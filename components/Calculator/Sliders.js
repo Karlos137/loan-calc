@@ -6,7 +6,6 @@ const Sliders = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
   border-radius: 10px 10px 0 0;
 `
 

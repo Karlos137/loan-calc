@@ -14,6 +14,7 @@ import Result from "./Result"
 import ResultTitle from "./ResultTitle"
 import ResultValue from "./ResultValue"
 import Button from "./Button"
+import ButtonWrapper from "./ButtonWrapper"
 
 const Calculator = () => {
   const {
@@ -90,7 +91,7 @@ const Calculator = () => {
             </Slider>
             <Slider>
               <div>
-                <SliderTitle>Amount</SliderTitle>
+                <SliderTitle>Term</SliderTitle>
                 <Select value={term} onChange={e => setTerm(e.target.value)}>
                   {[...Array(1 + (termEnd - termStart) / termStep)].map(
                     (_, i) => (
@@ -125,20 +126,23 @@ const Calculator = () => {
                 <ResultTitle>Term</ResultTitle>
                 <ResultValue> {data.data.term}</ResultValue>
               </Result>
-              {console.log(data.data)}
               <Result>
                 <ResultTitle>Total cost of credit</ResultTitle>
                 <ResultValue> {data.data.totalCostOfCredit}</ResultValue>
               </Result>
               <Result>
                 <ResultTitle bold>Mothly payment</ResultTitle>
-                <ResultValue bold> {data.data.monthlyPayment}</ResultValue>
+                <ResultValue bold>
+                  {data.data.monthlyPayment.toFixed(2)}
+                </ResultValue>
               </Result>
             </Results>
           )}
           {isError && <div>Results fetch error...</div>}
 
-          <Button>I do nothing</Button>
+          <ButtonWrapper>
+            <Button>I do nothing</Button>
+          </ButtonWrapper>
         </StyledCalculator>
       )}
     </>

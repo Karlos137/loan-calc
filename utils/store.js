@@ -25,6 +25,7 @@ const useStore = create(set => ({
   },
   paramsLoading: true,
   paramsError: null,
+
   // Amount interval data
   amount: 2000,
   amountStart: 10,
