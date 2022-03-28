@@ -29,14 +29,11 @@ const Calculator = () => {
     termStart,
     termStep,
     paramsLoading,
+    paramsError,
   } = useStore(state => state)
 
   useEffect(() => {
-    try {
-      fetchCalcParams()
-    } catch (e) {
-      console.log("error")
-    }
+    fetchCalcParams()
   }, [])
 
   const fetchCalcResult = () => {
@@ -50,6 +47,10 @@ const Calculator = () => {
     fetchCalcResult,
     { cacheTime: 300000 }
   )
+
+  if (paramsError) {
+    return <div>Error fetching data..</div>
+  }
 
   return (
     <>

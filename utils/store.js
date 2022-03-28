@@ -3,22 +3,28 @@ import axios from "axios"
 
 const useStore = create(set => ({
   fetchCalcParams: async () => {
-    const data = await axios.get(
-      "https://js-developer-second-round.herokuapp.com/api/v1/application/constraints"
-    )
-    set({
-      amountStart: data.data.amountInterval.min,
-      amountEnd: data.data.amountInterval.max,
-      amountStep: data.data.amountInterval.step,
-      amount: data.data.amountInterval.defaultValue,
-      termStart: data.data.termInterval.min,
-      termEnd: data.data.termInterval.max,
-      termStep: data.data.termInterval.step,
-      term: data.data.termInterval.defaultValue,
-      paramsLoading: false,
-    })
+    try {
+      const data = await axios.get(
+        "https://js-developer-second-round.herokuapp.com/api/v1/application/constraints"
+      )
+      set({
+        amountStart: data.data.amountInterval.min,
+        amountEnd: data.data.amountInterval.max,
+        amountStep: data.data.amountInterval.step,
+        amount: data.data.amountInterval.defaultValue,
+        termStart: data.data.termInterval.min,
+        termEnd: data.data.termInterval.max,
+        termStep: data.data.termInterval.step,
+        term: data.data.termInterval.defaultValue,
+        paramsLoading: false,
+      })
+    } catch (e) {
+      set({ paramsError: e, paramsLoading: false })
+      console.log("error", e)
+    }
   },
   paramsLoading: true,
+  paramsError: null,
   // Amount interval data
   amount: 2000,
   amountStart: 10,
