@@ -1,3 +1,7 @@
+# Loan Calc
+
+Simple loan calculator.
+
 ## Dev server
 
 ```
